@@ -14,7 +14,7 @@ public class Menu {
 
         while (opcion != 0) {
             System.out.println("\n--- CALCULADORA DE ÁLGEBRA ---");
-            System.out.println("1. Ingresar Matriz");
+            System.out.println("1. Ingresar Matrices");
             System.out.println("2. Ver Matriz actual");
             System.out.println("3. Resolver Sistema (Gauss)");
             System.out.println("0. Salir");
@@ -32,7 +32,7 @@ public class Menu {
     private void procesarOpcion(int opcion) {
         switch (opcion) {
             case 1:
-                System.out.println("-> Lógica para ingresar datos de la matriz...");
+                System.out.println("->  para ingresar datos de la matriz...");
                 break;
             case 2:
                 System.out.println("-> Mostrando matriz...");
