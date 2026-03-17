@@ -1,50 +1,47 @@
 package com.calculadora.ui;
-
+import com.calculadora.modelo.Matriz;
+import com.calculadora.logica.CalculadoraAlgebra;
 import java.util.Scanner;
 
 public class Menu {
-    private Scanner scanner;
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+      
+       CalculadoraAlgebra cerebro = new CalculadoraAlgebra();
+       System.out.println("=== CONFIGURACIÓN DE MATRIZ ===");
+        System.out.print("Introduce el número de filas: ");
+        int f = leer.nextInt();
+        
+        System.out.print("Introduce el número de columnas: ");
+        int c = leer.nextInt();
+        //instanciamos la Matriz con los datos que se meten
+       Matriz miMatriz = new Matriz(f,c);
+       //los mandamos a que se llenen 
+       cerebro.llenarMatriz(miMatriz, leer);
+    // ahora si mostramos las opciones que hay para esas matrices
+       System.out.println("\n¿Que deseas ahcer con esa matriz?:")
+       System.out.println("1.- resolver por metodo de gauss");
+       System.out.println("2.-sumar");
+       System.out.println("3.- mostar Matriz actual");
+       //demas opciones, deja me chingo un cafe mrd 
+       System.out.println("4.-salir");
+       int opcion = new leer.nextInt();
 
-    public Menu() {
-        this.scanner = new Scanner(System.in);
-    }
 
-    public void mostrarMenu() {
-        int opcion = -1;
-
-        while (opcion != 0) {
-            System.out.println("\n--- CALCULADORA DE ÁLGEBRA ---");
-            System.out.println("1. Ingresar Matrices");
-            System.out.println("2. Ver Matriz actual");
-            System.out.println("3. Resolver Sistema (Gauss)");
-            System.out.println("0. Salir");
-            System.out.print("Selecciona una opción: ");
-
-            try {
-                opcion = Integer.parseInt(scanner.nextLine());
-                procesarOpcion(opcion);
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Por favor ingresa un número válido.");
-            }
-        }
-    }
-
-    private void procesarOpcion(int opcion) {
-        switch (opcion) {
+          switch (opcion) {
             case 1:
-                System.out.println("->  para ingresar datos de la matriz...");
+                cerebro.resolverGauss(miMatriz);
                 break;
             case 2:
-                System.out.println("-> Mostrando matriz...");
-                break;
+                cerebro.sumarMtrices(miMatriz, miMatriz);
+              break;
+
             case 3:
-                System.out.println("-> Resolviendo sistema...");
-                break;
-            case 0:
-                System.out.println("Saliendo del programa. ¡Suerte en Álgebra!");
-                break;
+              cerebro.imprimirMatriz(miMatriz);
+              break;
+
             default:
-                System.out.println("Opción no válida.");
+                System.out.println("Saliendo.");
         }
     }
 }
