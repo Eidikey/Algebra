@@ -10,13 +10,13 @@ public class Menu {
         CalculadoraAlgebra cerebro = new CalculadoraAlgebra();
 
         Matriz m1 = null;
-        matriz m2 = null;
+        Matriz m2 = null;
         
         boolean continuar = true;
 
         while (continuar) {
             System.out.println("\n--- CALCULADORA DE MATRICES ---");
-            ystem.out.println("M1: " + (m1 == null ? "[Vacía]" : "Configurada"));
+            System.out.println("M1: " + (m1 == null ? "[Vacía]" : "Configurada"));
             System.out.println("M2: " + (m2 == null ? "[Vacía]" : "Configurada"));
             System.out.println("---------------------------------------------------");
             System.out.println("1. Configurar/Cambiar Matriz 1");
@@ -31,28 +31,29 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    m1 = cerebro.crearyGenerarMatriz(leer, "Matriz 1");
+                    m1 = cerebro.crearYGenerarMatriz(leer, "Matriz 1");
                       break;
                 case 2:
-                    m2 = cerebro.crearyGenerarMatriz(leer, "Matriz 2")
+                    m2 = cerebro.crearYGenerarMatriz(leer, "Matriz 2");
                     break;
                 case 3:
-                    if (miMatriz != null) {
-                        Matriz res = CalculadoraAlgebra.sumarMatrices(miMatriz, miMatriz);
-                        CalculadoraAlgebra.imprimirMatriz(res);
+                    if (m1 != null) {
+                     Matriz res = cerebro.sumarMatrices(m1, m2);
+                      cerebro.imprimirMatriz(res);
                     } else System.out.println("No hay matriz cargada.");
                     break;
                 case 4:
                     if (m1 != null && m2 != null) {
-                    System.out.println("Aplicando Gauss a sistema (M1 | M2)...");
+                    // Validamos que el sistema sea cuadrado para Gauss simple
+                    if (m1.getFilas() == m1.getColumnas() && m1.getFilas() == m2.getFilas()) {
                     cerebro.resolverGauss(m1, m2);
-                        } else if (m1 != null) {
-                        System.out.println("Aplicando Gauss solo a M1...");
-                              cerebro.resolverGauss(m1);
-                              } else {
-                          System.out.println("Error: No hay matrices para procesar.");
+                        } else {
+                      System.out.println("Error: Para Gauss, M1 debe ser cuadrada y M2 debe tener las mismas filas.");
+                      }
+                        } else {
+                          System.out.println("Error: Necesitas configurar M1 (coeficientes) y M2 (resultados).");
                           }
-                      break;
+                    break;
                 case 5:
                     System.out.println("¿Cuál borrar? 1:M1, 2:M2, 3:Ambas");
                     int borrar = leer.nextInt();

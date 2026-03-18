@@ -37,4 +37,7 @@ public class Matriz {
       throw new IndexOutOfBoundsException("Índices fuera de rango: [" + f + "][" + c + "]");
     }
   }
+ public double[][] getDatos() {
+    return this.datos;
+}
 }
