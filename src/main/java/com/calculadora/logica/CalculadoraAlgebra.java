@@ -55,4 +55,15 @@ public class CalculadoraAlgebra {
         }
         return res;
     }
+    public Matriz crearYGenerarMatriz(Scanner leer, String nombre) {
+    System.out.println("--- Configurando " + nombre + " ---");
+    System.out.print("Introduce el número de filas: ");
+    int f = leer.nextInt();
+    System.out.print("Introduce el número de columnas: ");
+    int c = leer.nextInt();
+    
+    Matriz m = new Matriz(f, c);
+    llenarMatriz(m, leer); // Uso el método que ya tenemos para pedir los números
+    return m;
+    }
 }
